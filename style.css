@@ -1,0 +1,195 @@
+/* General body styling (ensure this is present for context) */
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #1A1D2E;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    color: #333; /* Default text color for dashboard elements */
+}
+
+/* Blob background (already working for you) */
+.blob-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 150%;
+    z-index: -10;
+    overflow: hidden;
+}
+
+.blob-bg svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    animation: float 30s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0px, 0px);
+    }
+    50% {
+        transform: translate(20px, 20px);
+    }
+}
+
+/* Floating Lottie animations */
+.floating-animations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.floating-animations lottie-player {
+    position: absolute;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+/* Adjust lottie player sizes for responsiveness */
+@media (max-width: 768px) {
+    .floating-animations lottie-player {
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
+
+/* Login Container - REVERTED to previous basic glassmorphism */
+.login-container {
+    background: rgba(255, 255, 255, 0.1); /* Original background */
+    backdrop-filter: blur(20px); /* Original blur */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Original border */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1); /* Original shadow */
+    padding: 2rem; /* Original padding */
+    border-radius: 2rem; /* Original border-radius */
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    margin: 1rem auto;
+    color: #fff; /* Keep text white for login elements */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Input boxes for Login/Signup - REVERTED to basic glassmorphism background & color */
+/* Padding, font-size, and rounded-ness will now be controlled by Tailwind classes in HTML */
+.input-box {
+    width: 100%;
+    margin-bottom: 1rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.2); /* Original background */
+    color: #fff;
+    outline: none; /* Keep outline removed */
+    /* Remove transitions, focus styles, padding, font-size, border-radius from here */
+}
+
+.input-box::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Original placeholder color */
+}
+
+/* Buttons for Login/Signup - REVERTED to original styles */
+.login-btn, .signup-btn {
+    background: linear-gradient(to right, #4C00FF, #FF00C8);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem; /* Original padding */
+    border-radius: 1rem; /* Original border-radius */
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease; /* Original transition */
+    font-size: 1rem; /* Original font-size */
+    /* Remove font-weight, letter-spacing, and transform from here */
+}
+
+.login-btn:hover, .signup-btn:hover {
+    background: linear-gradient(to right, #6A00F0, #FF33C1);
+    /* Remove transform from here */
+}
+
+/* Dashboard Background Image and Overlay (unchanged) */
+#dashboard:not(.hidden) {
+    background-image: url('https://i.postimg.cc/Pq0v4m3x/download-6.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+    z-index: 1;
+}
+
+#dashboard:not(.hidden)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+/* Dashboard Box Glow Effect - ENHANCED (unchanged, still desired) */
+.glow-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glow-box:hover {
+    box-shadow: 0 8px 25px rgba(76, 0, 255, 0.4),
+                0 0 0 3px rgba(76, 0, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Specific adjustments for table on mobile (unchanged) */
+.glow-box table {
+    min-width: 400px;
+}
+
+/* Responsive adjustments (unchanged) */
+@media (min-width: 768px) {
+    body {
+        display: block;
+    }
+    /* input-box font-size specific to login will be handled by Tailwind directly */
+    /* login-btn/signup-btn font-size specific to login will be handled by Tailwind directly */
+    #dashboard {
+        padding: 2.5rem 2.5rem;
+    }
+    .glow-box {
+        padding: 2rem;
+    }
+}
+
+/* For form elements inside glow-box - KEEPING these for dashboard input enhancement */
+.glow-box input[type="text"],
+.glow-box input[type="number"],
+.glow-box select {
+    border: 1px solid #ccc;
+    /* padding, border-radius, font-size will be set by Tailwind directly in HTML */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glow-box input[type="text"]:focus,
+.glow-box input[type="number"]:focus,
+.glow-box select:focus {
+    border-color: #4C00FF;
+    box-shadow: 0 0 0 3px rgba(76, 0, 255, 0.2);
+    outline: none;
+}
+/* Keep button font-weight for dashboard, or set in HTML */
+.glow-box button {
+    font-weight: 500;
+}
